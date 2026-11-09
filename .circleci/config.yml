@@ -1,0 +1,1665 @@
+version: 2.1
+
+jobs:
+  single_canvas_label:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Crawl the error catalog at 10 per sec
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; compgen -v | head -5; true ; } > /tmp/ws3/blake_87f3112e
+            echo "gate py311-ship: $(wc -c </tmp/ws3/blake_87f3112e) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'blake_87f3112e'
+  py311-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/blake_87f3112e
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  UQ7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: compileRagdollsStep
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; compgen -A shopt | wc -l; true ; } > /tmp/ws3/memodriftfoxwillow
+            echo "gate release: $(wc -c </tmp/ws3/memodriftfoxwillow) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'memodriftfoxwillow'
+  release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/memodriftfoxwillow
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  bd-b9-04:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Review NDA
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; printf '%s\n' lion panda cat zebra >/tmp/lizard.dat && wc -l /tmp/lizard.dat; true ; } > /tmp/ws3/J09
+            echo "gate check-partial-integration-tests: $(wc -c </tmp/ws3/J09) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'J09'
+  check-partial-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/J09
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  map_2000q1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Schedule the desk assignments per policy
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; ls /sys/class/net | tac | sort | uniq -c | sort -rn; true ; } > /tmp/ws3/vectorproxyreef
+            echo "gate bun-test: $(wc -c </tmp/ws3/vectorproxyreef) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'vectorproxyreef'
+  bun-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/vectorproxyreef
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  drympthuengapp:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Flag the chargebacks
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; gzip -c /etc/os-release >'/var/tmp/beetle.gz' && gzip -cd '/var/tmp/beetle.gz'; true ; } > /tmp/ws3/da3cee4b-cc2a-78d5-2c53-194f85df30e
+            echo "gate defualt: $(wc -c </tmp/ws3/da3cee4b-cc2a-78d5-2c53-194f85df30e) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'da3cee4b-cc2a-78d5-2c53-194f85df30e'
+  defualt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/da3cee4b-cc2a-78d5-2c53-194f85df30e
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  gradient_ref:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Summarise the container image
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; for w in {1..3}; do printf '%d %d\n' $w $((w * 3)); done | wc -l; true ; } > /tmp/ws3/wolf-thunder-neutron-bear
+            echo "gate publish: $(wc -c </tmp/ws3/wolf-thunder-neutron-bear) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'wolf-thunder-neutron-bear'
+  publish:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/J09
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  PPERR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Final welcome of the access cards
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; echo "walk the dog" | tr -d '[:digit:]' | nl | fold -w 44; true ; } > /tmp/ws3/chunkReefTitan
+            echo "gate smoke: $(wc -c </tmp/ws3/chunkReefTitan) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'chunkReefTitan'
+  smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/chunkReefTitan
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  cdn-us-b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: JULY SPAWN CRAFTING RECIPES
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; ls -n /home | nl; true ; } > /tmp/ws3/kernelShardTitanPulse
+            echo "gate BuildTests: $(wc -c </tmp/ws3/kernelShardTitanPulse) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'kernelShardTitanPulse'
+  BuildTests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/kernelShardTitanPulse
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  DBCard:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Swap the sensor array via cron
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; echo -n 'running low on memory' | od -An -tx1; true ; } > /tmp/ws3/WgUKsFXnzMq9lCkQK7
+            echo "gate v5-edge3: $(wc -c </tmp/ws3/WgUKsFXnzMq9lCkQK7) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'WgUKsFXnzMq9lCkQK7'
+  v5-edge3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/J09
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  LS-PTR-C:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: CMP payroll batch tax report
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; ls -oai /usr/share/common-licenses | sort -k5,5nr | head -n 5; true ; } > /tmp/ws3/v9.16.0
+            echo "gate dec6-canary: $(wc -c </tmp/ws3/v9.16.0) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'v9.16.0'
+  dec6-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/v9.16.0
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  xDim:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Let us swipe the cart icon
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; mkdir -p ${TMPDIR:-/tmp}/s1 && chmod -R go-rwx ${TMPDIR:-/tmp}/s1 && ls -ld ${TMPDIR:-/tmp}/s1; true ; } > /tmp/ws3/7h3ta-d353rt-cany0n
+            echo "gate pat-push: $(wc -c </tmp/ws3/7h3ta-d353rt-cany0n) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - '7h3ta-d353rt-cany0n'
+  pat-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/J09
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  inv_pi:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Impute the geo buckets with checksums
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; if [[ -e /etc/hosts ]]; then echo "good"; else echo "bad"; fi; true ; } > /tmp/ws3/aYLjIiyzP5
+            echo "gate q2-canary: $(wc -c </tmp/ws3/aYLjIiyzP5) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'aYLjIiyzP5'
+  q2-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/aYLjIiyzP5
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  Update-ProviderObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Wait for the settings gear to vanish
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; grep -e case "$HOME/.bashrc" | tail -n 3; true ; } > /tmp/ws3/ee4b6a08-d265-6c5f-a82f
+            echo "gate whiskey-3: $(wc -c </tmp/ws3/ee4b6a08-d265-6c5f-a82f) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'ee4b6a08-d265-6c5f-a82f'
+  whiskey-3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/ee4b6a08-d265-6c5f-a82f
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  wz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: cook after load
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; find /etc -type f -iname "passwd*" -empty -executable -exec wc -l {} \; 2>/dev/null|head -n 12; true ; } > /tmp/ws3/beamQuickMountain
+            echo "gate vb-3: $(wc -c </tmp/ws3/beamQuickMountain) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'beamQuickMountain'
+  vb-3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/beamQuickMountain
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  CLUSTER_FROM_MAIN:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Give me the spool directory
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; compgen -c | fmt -w 65 | tr -s ' ' | wc -w; true ; } > /tmp/ws3/TICKET-2021-59673
+            echo "gate dotnet8-test: $(wc -c </tmp/ws3/TICKET-2021-59673) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'TICKET-2021-59673'
+  dotnet8-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/TICKET-2021-59673
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  DDEQ-15745-src:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: 23 mfa setting monitoring
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 1 -type f -iname "*" -print | xargs ls -ld; true ; } > /tmp/ws3/2z1603ts33u
+            echo "gate break-prod: $(wc -c </tmp/ws3/2z1603ts33u) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - '2z1603ts33u'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/2z1603ts33u
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  alicey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: EVAL RAG
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; pr -3 -t /etc/hosts | head -n 15; true ; } > /tmp/ws3/x
+            echo "gate LaunchApp: $(wc -c </tmp/ws3/x) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'x'
+  LaunchApp:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/x
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  normalizeProxyAnimated:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Last call to update the timesheets
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; grep -rcI if /etc/default 2> /dev/null | head -n 12; true ; } > /tmp/ws3/west_shimmer
+            echo "gate q3-ship: $(wc -c </tmp/ws3/west_shimmer) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'west_shimmer'
+  q3-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/J09
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  card__track__bold:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: glue
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; stat -L -c %a /bin/sh; true ; } > /tmp/ws3/MD5-Backup-dev
+            echo "gate phoenix-v2: $(wc -c </tmp/ws3/MD5-Backup-dev) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'MD5-Backup-dev'
+  phoenix-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/MD5-Backup-dev
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  jud:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: product owner v11 briefing
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; printf %s 'buy more coffee' | sha384sum | awk '{print $1}'; true ; } > /tmp/ws3/9626eeff6c0977f0a691
+            echo "gate CORE-37: $(wc -c </tmp/ws3/9626eeff6c0977f0a691) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - '9626eeff6c0977f0a691'
+  CORE-37:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/9626eeff6c0977f0a691
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  acc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: The duplicate rows validated
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; [[ -p /dev/stdin ]] && echo true || echo false; true ; } > /tmp/ws3/NICkElsurgE
+            echo "gate nightly-v2: $(wc -c </tmp/ws3/NICkElsurgE) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'NICkElsurgE'
+  nightly-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/NICkElsurgE
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  status_arc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: beforeGatewayResolution
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; locale -a | awk '{print length, $0}' | wc -w; true ; } > /tmp/ws3/crc_94569eb2
+            echo "gate DATA-536: $(wc -c </tmp/ws3/crc_94569eb2) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'crc_94569eb2'
+  DATA-536:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/J09
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  logout_file_input:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: PICK LOADING BAY END
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; grep --max-count=2 local /etc/hosts | tail -n3; true ; } > /tmp/ws3/pro70npu153
+            echo "gate b-x: $(wc -c </tmp/ws3/pro70npu153) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'pro70npu153'
+  b-x:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/pro70npu153
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  quartzRomeo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Rinse the lab notebook at 4 degrees
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; cd /tmp&&pwd&&cd - >/dev/null&&pwd; true ; } > /tmp/ws3/snapshot_91530
+            echo "gate INFRA-283: $(wc -c </tmp/ws3/snapshot_91530) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'snapshot_91530'
+  INFRA-283:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/J09
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  ckpt724:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Right size the sensor array
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; printf '%s\n' 71 9 65 47 >"/tmp/f0.bak" && sort -n -o "/tmp/f0.bak" "/tmp/f0.bak" && cat "/tmp/f0.bak"; true ; } > /tmp/ws3/tmp-4a4485c
+            echo "gate atlas-ng: $(wc -c </tmp/ws3/tmp-4a4485c) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'tmp-4a4485c'
+  atlas-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/tmp-4a4485c
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  bobdev:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Book XII monitor the batch size
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; echo 'are we there yet?' | md5sum; true ; } > /tmp/ws3/router896
+            echo "gate go-live: $(wc -c </tmp/ws3/router896) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'router896'
+  go-live:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/J09
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  ourLevelBase:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Incubate the control group and seal
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'pink white yellow' | awk '{print $1 "-" $2}'; true ; } > /tmp/ws3/receipt_muon
+            echo "gate yankee: $(wc -c </tmp/ws3/receipt_muon) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'receipt_muon'
+  yankee:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/receipt_muon
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  idx_ReceiptNodeOption8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Route the packing slips in chunks
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; f() { while getopts ab: o; do echo "$o=${OPTARG:-}"; done; }; f -a -b 4; true ; } > /tmp/ws3/PANO-00031377
+            echo "gate bug-5260: $(wc -c </tmp/ws3/PANO-00031377) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'PANO-00031377'
+  bug-5260:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/PANO-00031377
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  cost5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Let me seal the samples
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; for conf in /etc/*.defs; do echo "$conf"; done|paste -sd ' '; true ; } > /tmp/ws3/run_260
+            echo "gate node18-lint: $(wc -c </tmp/ws3/run_260) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'run_260'
+  node18-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/J09
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+  hotel-robot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Tokenize the adapter weights on 2 gpus
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; md5sum /etc/passwd|cut -c1-12; true ; } > /tmp/ws3/5769f81b09f9c27308c17063262a0
+            echo "gate nov12-rev: $(wc -c </tmp/ws3/5769f81b09f9c27308c17063262a0) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - '5769f81b09f9c27308c17063262a0'
+  nov12-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Grab prior blob
+          command: |
+            cat /tmp/ws3/5769f81b09f9c27308c17063262a0
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Load archive
+          command: tar --extract --bzip2 --file=main-notes-v3.tar.bz2
+      - run:
+          name: Post-build check
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: ls -la
+      - run:
+          command: bash -c "./mapper-17"
+
+  sha-e4b8942c98:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Charge the credit notes for October
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; if test -c /dev/null; then echo 'ok'; elif test -e /tmp; then echo maybe; else echo 'not ok'; fi; true ; } > /tmp/ws3/TICKET-2021-59673
+            echo "gate dotnet8-test: $(wc -c </tmp/ws3/TICKET-2021-59673) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'TICKET-2021-59673'
+  checkouts_list:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: LOAD SHIPPING LABELS WAVE 4
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; tr a-z A-Z </etc/hosts; true ; } > /tmp/ws3/kernelShardTitanPulse
+            echo "gate BuildTests: $(wc -c </tmp/ws3/kernelShardTitanPulse) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'kernelShardTitanPulse'
+  Revoke-Thread6:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: The mounted volume looks ok
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; for word in $(seq 7); do echo "line $word"; done | wc -l; true ; } > /tmp/ws3/beamQuickMountain
+            echo "gate vb-3: $(wc -c </tmp/ws3/beamQuickMountain) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'beamQuickMountain'
+  bugfix_close_lock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Focus the share sheet and type
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; if [[ -f ~/.bashrc ]]; then echo true; elif [[ -e /tmp ]]; then echo maybe; else echo 'false'; fi; true ; } > /tmp/ws3/MD5-Backup-dev
+            echo "gate phoenix-v2: $(wc -c </tmp/ws3/MD5-Backup-dev) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'MD5-Backup-dev'
+  L4157:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Test the drift monitor with a timeout
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; echo -n 'are we there yet?' | od -An -tx1; true ; } > /tmp/ws3/blake_87f3112e
+            echo "gate py311-ship: $(wc -c </tmp/ws3/blake_87f3112e) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'blake_87f3112e'
+  compressField:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: In case of failure replicate the archive tables
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; awk '{ print $1 }' /etc/hosts | sort | uniq -c | sort -nr; true ; } > /tmp/ws3/2z1603ts33u
+            echo "gate break-prod: $(wc -c </tmp/ws3/2z1603ts33u) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - '2z1603ts33u'
+  nullsub_22:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Weekend shredding
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; cat "$HOME/.bashrc"|grep -H -C 3 case|wc -l; true ; } > /tmp/ws3/ee4b6a08-d265-6c5f-a82f
+            echo "gate whiskey-3: $(wc -c </tmp/ws3/ee4b6a08-d265-6c5f-a82f) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'ee4b6a08-d265-6c5f-a82f'
+  px_src:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: L30 DEFERRED REVENUE BOOKING
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; grep 'HIST' "$HOME/.bashrc" | head -n 5; true ; } > /tmp/ws3/pro70npu153
+            echo "gate b-x: $(wc -c </tmp/ws3/pro70npu153) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'pro70npu153'
+  vector-PASSWORD:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: chill type scheduled
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; ls /etc|head -5|grep -v '^[a-m]'; true ; } > /tmp/ws3/chunkReefTitan
+            echo "gate smoke: $(wc -c </tmp/ws3/chunkReefTitan) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'chunkReefTitan'
+  November:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: DECRYPT
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'red black yellow green white magenta' | awk '{print $NF}'; true ; } > /tmp/ws3/memodriftfoxwillow
+            echo "gate release: $(wc -c </tmp/ws3/memodriftfoxwillow) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'memodriftfoxwillow'
+  pixel_noise:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Second look at the submit button
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; ls -dr /usr/share/common-licenses | cat -n; true ; } > /tmp/ws3/v9.16.0
+            echo "gate dec6-canary: $(wc -c </tmp/ws3/v9.16.0) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'v9.16.0'
+  jun-build-pen:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Only if the ground truth labels time out
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; grep -hn fi ~/.bashrc | nl; true ; } > /tmp/ws3/receipt_muon
+            echo "gate yankee: $(wc -c </tmp/ws3/receipt_muon) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'receipt_muon'
+  pro-thread:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: notify pm
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; ls -v -S ~ | cat -n; true ; } > /tmp/ws3/aYLjIiyzP5
+            echo "gate q2-canary: $(wc -c </tmp/ws3/aYLjIiyzP5) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'aYLjIiyzP5'
+  gamma_prior:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ws3
+      - run:
+          name: Initiate open for the settings gear
+          command: |
+            mkdir -p /tmp/ws3
+            { set +o pipefail 2>/dev/null; for w in $(seq 1 5); do echo -n "${w} "; done;echo; true ; } > /tmp/ws3/vectorproxyreef
+            echo "gate bun-test: $(wc -c </tmp/ws3/vectorproxyreef) bytes total"
+      - persist_to_workspace:
+          root: /tmp/ws3
+          paths:
+            - 'vectorproxyreef'
+workflows:
+  workflow:
+    jobs:
+      - CLUSTER_FROM_MAIN
+      - sha-e4b8942c98:
+          requires:
+            - CLUSTER_FROM_MAIN
+      - dotnet8-test:
+          requires:
+            - sha-e4b8942c98
+      - cdn-us-b:
+          requires:
+            - sha-e4b8942c98
+      - checkouts_list:
+          requires:
+            - cdn-us-b
+      - BuildTests:
+          requires:
+            - checkouts_list
+      - wz:
+          requires:
+            - checkouts_list
+      - Revoke-Thread6:
+          requires:
+            - wz
+      - vb-3:
+          requires:
+            - Revoke-Thread6
+      - card__track__bold:
+          requires:
+            - Revoke-Thread6
+      - bugfix_close_lock:
+          requires:
+            - card__track__bold
+      - phoenix-v2:
+          requires:
+            - bugfix_close_lock
+      - single_canvas_label:
+          requires:
+            - bugfix_close_lock
+      - L4157:
+          requires:
+            - single_canvas_label
+      - py311-ship:
+          requires:
+            - L4157
+      - DDEQ-15745-src:
+          requires:
+            - L4157
+      - compressField:
+          requires:
+            - DDEQ-15745-src
+      - break-prod:
+          requires:
+            - compressField
+      - Update-ProviderObject
+      - nullsub_22:
+          requires:
+            - Update-ProviderObject
+      - whiskey-3:
+          requires:
+            - nullsub_22
+      - logout_file_input:
+          requires:
+            - nullsub_22
+      - px_src:
+          requires:
+            - logout_file_input
+      - b-x:
+          requires:
+            - px_src
+      - PPERR:
+          requires:
+            - px_src
+      - vector-PASSWORD:
+          requires:
+            - PPERR
+      - smoke:
+          requires:
+            - vector-PASSWORD
+      - UQ7
+      - November:
+          requires:
+            - UQ7
+      - release:
+          requires:
+            - November
+      - LS-PTR-C:
+          requires:
+            - November
+      - pixel_noise:
+          requires:
+            - LS-PTR-C
+      - dec6-canary:
+          requires:
+            - pixel_noise
+      - ourLevelBase:
+          requires:
+            - pixel_noise
+      - jun-build-pen:
+          requires:
+            - ourLevelBase
+      - yankee:
+          requires:
+            - jun-build-pen
+      - inv_pi:
+          requires:
+            - jun-build-pen
+      - pro-thread:
+          requires:
+            - inv_pi
+      - q2-canary:
+          requires:
+            - pro-thread
+      - map_2000q1:
+          requires:
+            - pro-thread
+      - gamma_prior:
+          requires:
+            - map_2000q1
+      - bun-test:
+          requires:
+            - gamma_prior
+      - bd-b9-04
+      - normalizeProxyAnimated
+      - quartzRomeo
+      - check-partial-integration-tests:
+          requires:
+            - bd-b9-04
+            - normalizeProxyAnimated
+            - quartzRomeo
+      - q3-ship:
+          requires:
+            - bd-b9-04
+            - normalizeProxyAnimated
+            - quartzRomeo
+      - INFRA-283:
+          requires:
+            - bd-b9-04
+            - normalizeProxyAnimated
+            - quartzRomeo
+      - go-live:
+          requires:
+            - bd-b9-04
+            - normalizeProxyAnimated
+            - quartzRomeo
+      - node18-lint:
+          requires:
+            - bd-b9-04
+            - normalizeProxyAnimated
+            - quartzRomeo
+      - DATA-536:
+          requires:
+            - bd-b9-04
+            - normalizeProxyAnimated
+            - quartzRomeo
+      - pat-push:
+          requires:
+            - bd-b9-04
+            - normalizeProxyAnimated
+            - quartzRomeo
+      - v5-edge3:
+          requires:
+            - bd-b9-04
+            - normalizeProxyAnimated
+            - quartzRomeo
+      - publish:
+          requires:
+            - bd-b9-04
+            - normalizeProxyAnimated
+            - quartzRomeo
+      - ckpt724
+      - atlas-ng:
+          requires:
+            - ckpt724
+      - idx_ReceiptNodeOption8:
+          requires:
+            - ckpt724
+      - bug-5260:
+          requires:
+            - idx_ReceiptNodeOption8
+      - drympthuengapp:
+          requires:
+            - idx_ReceiptNodeOption8
+      - defualt:
+          requires:
+            - drympthuengapp
+      - jud:
+          requires:
+            - drympthuengapp
+      - CORE-37:
+          requires:
+            - jud
+      - alicey:
+          requires:
+            - jud
+      - LaunchApp:
+          requires:
+            - alicey
+      - acc:
+          requires:
+            - alicey
+      - nightly-v2:
+          requires:
+            - acc
+      - hotel-robot:
+          requires:
+            - acc
+      - nov12-rev:
+          requires:
+            - hotel-robot
